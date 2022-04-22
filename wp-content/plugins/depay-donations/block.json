@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "depay-donations/block",
+  "title": "DePay Donations",
+  "category": "widgets",
+  "icon": "star",
+  "description": "Embed the DePay Donations button.",
+  "keywords": [ "depay", "donations", "donation", "button" ],
+  "version": "1.0.0",
+  "textdomain": "depay-donations",
+  "example": {},
+  "editorScript": "depay-donations-script"
+}
