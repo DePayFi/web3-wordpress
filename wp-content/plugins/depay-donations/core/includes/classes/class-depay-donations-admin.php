@@ -32,7 +32,7 @@ class DePay_Donations_Admin{
     <div class="wrap">
       <h1 class="wp-heading-inline">DePay Donations</h1>
       <p>
-        To view past donation payments, please open the <a href="https://app.depay.fi/payments" target="_blank">DePay App</a>.
+        To view received donation payments, please open the <a href="https://app.depay.fi/payments" target="_blank">DePay App</a>.
       </p>
       <form action='options.php' method='post'>
 
@@ -89,7 +89,7 @@ class DePay_Donations_Admin{
         let unmount
         window.initDonationWidget = async()=> {
           if(unmount) { unmount(); unmount = undefined }
-          ({ unmount } = await DePayButtons.DePayWidgets.Donation({
+          ({ unmount } = await DePayWidgets.Donation({
             container: document.getElementById('depayDonationWidgetDemo'),
             closable: false,
             style: {
@@ -134,6 +134,7 @@ class DePay_Donations_Admin{
             },
             accept: getAccept()
           }))
+          button.removeAttribute('initialized')
           button.innerHTML = ''
           DePayButtons.init({document: document})
         }
@@ -279,8 +280,8 @@ class DePay_Donations_Admin{
     wp_enqueue_script( 'DEPAYDONATIONS-scripts-ace', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/ace.js', array(), DEPAYDONATIONS_VERSION, false );
     wp_enqueue_script( 'DEPAYDONATIONS-scripts-lodash', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/lodash.js', array(), DEPAYDONATIONS_VERSION, false );
     wp_enqueue_script( 'DEPAYDONATIONS-scripts-widgets', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/widgets.bundle.js', array(), DEPAYDONATIONS_VERSION, false );
-    wp_enqueue_script( 'DEPAYDONATIONS-scripts-react-shadow-dom', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/react-shadow-dom.js', array(), DEPAYDONATIONS_VERSION, false );
-    wp_enqueue_script( 'DEPAYDONATIONS-scripts-buttons', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/buttons.js', array(), DEPAYDONATIONS_VERSION, false );
+    wp_enqueue_script( 'DEPAYDONATIONS-scripts-react-shadow-dom', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/react-shadow-dom.js', ['wp-element'], DEPAYDONATIONS_VERSION, false );
+    wp_enqueue_script( 'DEPAYDONATIONS-scripts-buttons', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/buttons.js', ['wp-element'], DEPAYDONATIONS_VERSION, false );
     wp_enqueue_script( 'DEPAYDONATIONS-scripts-admin', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/admin.js', array(), DEPAYDONATIONS_VERSION, false );
   }
 
@@ -289,7 +290,7 @@ class DePay_Donations_Admin{
     ?>
       <input type='text' class='regular-text ltr' id='DePay_donations_receiving_wallet_address' name='DePay_donations_receiving_wallet_address' value='<?php echo $value; ?>'/>
       <div style="padding-top: 0.5rem;">
-        <button type="button" class="button button-secondary" aria-label="Click to connect your wallet" onclick="DePayButtons.DePayWidgets.Connect().then(({ account })=>{ document.getElementById('DePay_donations_receiving_wallet_address').value = account })">
+        <button type="button" class="button button-secondary" aria-label="Click to connect your wallet" onclick="DePayWidgets.Connect().then(({ account })=>{ document.getElementById('DePay_donations_receiving_wallet_address').value = account })">
           Connect Wallet
         </button>
       </div>
@@ -335,7 +336,7 @@ class DePay_Donations_Admin{
 
     ?>
       <div style="padding-top: 0.5rem;">
-        <button type="button" id="DePay_donations_add_token" class="button button-secondary" aria-label="Click to add token" onclick="DePayButtons.DePayWidgets.Select({ what: 'token' }).then(addAcceptedPayment)">
+        <button type="button" id="DePay_donations_add_token" class="button button-secondary" aria-label="Click to add token" onclick="DePayWidgets.Select({ what: 'token' }).then(addAcceptedPayment)">
           Add Token
         </button>
       </div>

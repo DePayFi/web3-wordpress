@@ -1,4 +1,4 @@
-( function (blocks, editor, components, i18n, element ) {
+( function (blocks, editor, components, i18n, element, data ) {
 
 	const icon = props => React.createElement("svg", Object.assign({
 	  xmlns: "http://www.w3.org/2000/svg",
@@ -30,11 +30,33 @@
 	category: 'widgets',
 	example: {},
 	edit: function (props) {
+
+		let accept = DePay_donations_accepted_payments.map((token)=>{
+			return {
+				blockchain: token.blockchain,
+				token: token.address,
+				receiver: DePay_donations_receiving_wallet_address
+			}
+		})
+
+		let configuration = {
+			accept,
+			style: {
+				colors: {
+				  primary: DePay_donations_widget_color_primary,
+				  text: DePay_donations_widget_color_text,
+				  buttonText: DePay_donations_widget_color_buttons,
+				  icons: DePay_donations_widget_color_icons
+				},
+				css: DePay_donations_widget_css
+			},
+		}
 		
 		let element = React.createElement(DePayButtons.DePayButton, {
-      label: 'Pay',
-      widget: 'Payment',
-      configuration: {"accept":[{"blockchain":"ethereum","amount":20,"token":"0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb","receiver":"0x4e260bB2b25EC6F3A59B478fCDe5eD5B8D783B02"}]}
+      label: DePay_donations_button_label,
+      widget: 'Donation',
+      css: DePay_donations_button_css,
+      configuration
     })
 		return element
 	},
@@ -48,5 +70,6 @@
 	window.wp.editor,
 	window.wp.components,
 	window.wp.i18n,
-	window.wp.element
+	window.wp.element,
+	window.wp.data
 )
