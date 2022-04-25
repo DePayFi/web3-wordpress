@@ -43,6 +43,13 @@
 		category: 'widgets',
 		example: {},
 		edit: function (props) {
+			if(!DePay_donations_accepted_payments || DePay_donations_accepted_payments[0] == '' || !DePay_donations_receiving_wallet_address){
+				return wp.element.createElement(
+            'a',
+            { href: "/wp-admin/admin.php?page=depay-donations", target: '_blank' },
+            '!!! Please finish your donation configuration !!!'
+        );
+			}
 
 			let accept = DePay_donations_accepted_payments.map((token)=>{
 				return {

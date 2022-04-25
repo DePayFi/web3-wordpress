@@ -136,7 +136,6 @@ class DePay_Donations_Admin{
             accept: getAccept(),
             fee: { amount: '1%', receiver: '0x7b94266CA5cC36005b3043e1ffE5EBd624494731' }
           }))
-          console.log('initDonationButton!!!', getAccept())
           button.removeAttribute('initialized')
           button.innerHTML = ''
           DePayButtons.init({document: document})

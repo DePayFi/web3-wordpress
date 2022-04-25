@@ -128,7 +128,22 @@ class DePay_Donations_Block {
     $buttonLabel = get_option( 'DePay_donations_button_label' );
     $receiver = get_option('DePay_donations_receiving_wallet_address');
     $accept = [];
-    if(empty(get_option('DePay_donations_accepted_payments'))) { return; }
+
+    if(empty(get_option('DePay_donations_accepted_payments'))) { 
+      $html = <<<EOD
+        <a
+          href="/wp-admin/admin.php?page=depay-donations"
+          target="_blank"
+        >!!! Please finish your donation configuration !!!</a>
+        EOD;
+
+        return sprintf(
+          '<div %1$s>%2$s</div>',
+          $wrapper_attributes,
+          $html
+        );
+    }
+
     foreach (get_option('DePay_donations_accepted_payments') as $accepted) {
       $accepted = (object) $accepted;
       array_push($accept, (object)[
