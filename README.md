@@ -4,6 +4,12 @@ The Wordpress Web3 Donation plugin allows you to accept cryptocurrency donations
 
 ![Wordpress Web3 Donations](/wp-content/plugins/depay-donations/assets/screenshot-1.gif)
 
+### Demo
+
+Visit our demo wordpress installation and scroll to the buttom to find the "Support Us" donation button:
+
+https://web3wordpress.xyz/
+
 ### Installation
 
 1. [Download the latest plugin](https://github.com/DePayFi/web3-wordpress/releases/latest/download/wp-depay-donations-plugin.zip) 
