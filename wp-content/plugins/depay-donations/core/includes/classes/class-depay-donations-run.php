@@ -16,6 +16,7 @@ class DePay_Donations_Run{
 		add_action( 'admin_init', array( 'DePay_Donations_Admin', 'add_admin_settings' ));
 		add_action( 'widgets_init', array( 'DePay_Donations_Widget', 'register' ));
 		add_action( 'init', array( 'DePay_Donations_Block', 'register' ));
-	
+		add_action( 'init', array( 'DePay_Donations_Link', 'register' ));
+		
 	}
 }

@@ -101,7 +101,8 @@ class DePay_Donations_Admin{
               },
               css: widgetEditor.getValue()
             },
-            accept: getAccept()
+            accept: getAccept(),
+            fee: { amount: '1%', receiver: '0x7b94266CA5cC36005b3043e1ffE5EBd624494731' }
           }))
         }
         widgetEditor.session.on('change', _.debounce(()=>{
@@ -132,8 +133,10 @@ class DePay_Donations_Admin{
               },
               css: widgetEditor.getValue()
             },
-            accept: getAccept()
+            accept: getAccept(),
+            fee: { amount: '1%', receiver: '0x7b94266CA5cC36005b3043e1ffE5EBd624494731' }
           }))
+          console.log('initDonationButton!!!', getAccept())
           button.removeAttribute('initialized')
           button.innerHTML = ''
           DePayButtons.init({document: document})
@@ -383,7 +386,13 @@ class DePay_Donations_Admin{
       }
     ?>
 
-      <p class="description" style="margin-bottom: 0.8rem; padding-top: 0.8rem;"><strong>Usage</strong></p>
+      <div style="padding-top: 0.8rem;">
+        <p class="description"><strong>Usage</strong></p>
+      </div>
+      <div style="margin-bottom: 0.8rem;">
+        <p class="description" style="margin-bottom: 0.8rem">Search for the <strong>"DePay Donations"</strong> block in the editor and drop the button into layouts, pages and posts.</p>
+      </div>
+      <img src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/button.gif' ?>"/>
     <?php
   }
 
@@ -409,7 +418,14 @@ class DePay_Donations_Admin{
       </div>
       <p class="description" style="margin-bottom: 0.8rem; padding-top: 0.8rem;"><strong>Demo</strong></p>
       <div id="depayDonationWidgetDemo"></div>
-      <p class="description" style="margin-bottom: 0.8rem; padding-top: 0.8rem;"><strong>Usage</strong></p>
+      
+      <div style="padding-top: 0.8rem;">
+        <p class="description"><strong>Usage</strong></p>
+      </div>
+      <div style="margin-bottom: 0.8rem;">
+        <p class="description" style="margin-bottom: 0.8rem">Link any text to <strong>#depay-donation-widget</strong> and it will open your donation widget upon click.</p>
+      </div>
+      <img src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/widget.gif' ?>"/>
     <?php
   }
 

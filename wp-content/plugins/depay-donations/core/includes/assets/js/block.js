@@ -23,47 +23,60 @@
 	let isInitialized = false
 
 	registerBlockType( 'depay-donations/block', {
-	title: 'DePay Donations',
-	description: 'Embed the DePay Donations button.',
-	icon,
-	keywords: [ "depay", "donations", "donation", "button" ],
-	category: 'widgets',
-	example: {},
-	edit: function (props) {
+		title: 'DePay Donations',
+		description: 'Embed the DePay Donations button.',
+		supports: {
+			align: ["left", "right", "center"],
+			spacing: {
+        margin: true,
+        padding: true
+    	}
+		},
+		attributes: {
+	    align: {
+	      type: "string",
+	      default: "center"
+	    }
+	  },
+		icon,
+		keywords: [ "depay", "donations", "donation", "button" ],
+		category: 'widgets',
+		example: {},
+		edit: function (props) {
 
-		let accept = DePay_donations_accepted_payments.map((token)=>{
-			return {
-				blockchain: token.blockchain,
-				token: token.address,
-				receiver: DePay_donations_receiving_wallet_address
-			}
-		})
+			let accept = DePay_donations_accepted_payments.map((token)=>{
+				return {
+					blockchain: token.blockchain,
+					token: token.address,
+					receiver: DePay_donations_receiving_wallet_address
+				}
+			})
 
-		let configuration = {
-			accept,
-			style: {
-				colors: {
-				  primary: DePay_donations_widget_color_primary,
-				  text: DePay_donations_widget_color_text,
-				  buttonText: DePay_donations_widget_color_buttons,
-				  icons: DePay_donations_widget_color_icons
+			let configuration = {
+				accept,
+				style: {
+					colors: {
+					  primary: DePay_donations_widget_color_primary,
+					  text: DePay_donations_widget_color_text,
+					  buttonText: DePay_donations_widget_color_buttons,
+					  icons: DePay_donations_widget_color_icons
+					},
+					css: DePay_donations_widget_css
 				},
-				css: DePay_donations_widget_css
-			},
+			}
+			
+			let element = React.createElement('div', { style: { pointerEvents: 'none' } }, React.createElement(DePayButtons.DePayButton, {
+	      label: DePay_donations_button_label,
+	      widget: 'Donation',
+	      css: DePay_donations_button_css,
+	      configuration
+	    }))
+			return element
+		},
+		save: function (props) {
+			return null
 		}
-		
-		let element = React.createElement(DePayButtons.DePayButton, {
-      label: DePay_donations_button_label,
-      widget: 'Donation',
-      css: DePay_donations_button_css,
-      configuration
-    })
-		return element
-	},
-	save: function (props) {
-		return null
-	}
-})
+	})
 
 })(
 	window.wp.blocks,

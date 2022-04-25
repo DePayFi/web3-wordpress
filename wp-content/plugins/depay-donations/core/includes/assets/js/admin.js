@@ -53,4 +53,7 @@ window.removeAcceptedPayment = (className)=>{
     }
   }
   removedElement.remove()
+
+  initDonationButton()
+  initDonationWidget()
 }

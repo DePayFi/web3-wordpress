@@ -10,5 +10,18 @@
   "version": "1.0.0",
   "textdomain": "depay-donations",
   "example": {},
-  "editorScript": "depay-donations-script"
+  "editorScript": "depay-donations-script",
+  "supports": {
+    "align": ["left", "right", "center"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "center"
+    }
+  }
 }

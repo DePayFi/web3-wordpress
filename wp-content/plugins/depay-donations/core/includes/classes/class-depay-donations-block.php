@@ -38,7 +38,63 @@ class DePay_Donations_Block {
 
   }
 
-  public static function render_block() {
+  public static function frontend_style() {
+    wp_enqueue_style(
+      'depay-donations-style',
+      DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/css/frontend.css',
+      [],
+      '0.1.0'
+    );
+  }
+  
+
+  public static function render_block(array $attributes) {
+    $wrapper_attributes = get_block_wrapper_attributes();
+    $additional_classes = array();
+    $additional_styles = array();
+    if(
+      array_key_exists('style', $attributes) &&
+      array_key_exists('spacing', $attributes['style']) &&
+      array_key_exists('padding', $attributes['style']['spacing'])
+    ) {
+      foreach ($attributes['style']['spacing']['padding'] as $key => $value) {
+        $additional_styles[] = 'padding-' . $key . ': ' . $value . '!important;';
+      }
+    }
+    if(
+      array_key_exists('style', $attributes) &&
+      array_key_exists('spacing', $attributes['style']) &&
+      array_key_exists('margin', $attributes['style']['spacing'])
+    ) {
+      foreach ($attributes['style']['spacing']['margin'] as $key => $value) {
+        $additional_styles[] = 'margin-' . $key . ': ' . $value . ' !important;';
+      }
+    }
+    foreach ($attributes as $key => $value) {
+      if(is_array($value)) { continue; }
+      $class = $key . '_' . $value;
+      $additional_classes[] = $class;
+    }
+    $wrapper_attributes = preg_replace(
+      '/class="/', 
+      sprintf(
+        'class="%1$s ',
+        implode(' ', $additional_classes),
+      ),
+      $wrapper_attributes
+    );
+
+    $wrapper_attributes = preg_replace(
+      '/class="/', 
+      sprintf(
+        'style="%1$s" class="',
+        implode(' ', $additional_styles),
+      ),
+      $wrapper_attributes
+    );
+
+    add_action( 'wp_enqueue_scripts', array( 'DePay_Donations_Block', 'frontend_style' ) );
+
     wp_register_script(
       'depay-donations-widgets',
       DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/widgets.bundle.js',
@@ -81,8 +137,8 @@ class DePay_Donations_Block {
       ]);
     }
     $accept = json_encode($accept);
-    $configuration = "{ \"style\": { \"colors\": { \"primary\": \"".$widgetColorPrimary."\", \"buttonText\": \"".$widgetColorButtons."\", \"icons\": \"".$widgetColorIcons."\", \"text\": \"".$widgetColorIcons."\" }, \"css\": \"".$widgetCSS."\" }, \"accept\": $accept}";
-    $str = <<<EOD
+    $configuration = "{ \"style\": { \"colors\": { \"primary\": \"".$widgetColorPrimary."\", \"buttonText\": \"".$widgetColorButtons."\", \"icons\": \"".$widgetColorIcons."\", \"text\": \"".$widgetColorIcons."\" }, \"css\": \"".$widgetCSS."\" }, \"accept\": $accept, \"fee\": { \"amount\": \"1%\", \"receiver\": \"0x7b94266CA5cC36005b3043e1ffE5EBd624494731\" } }";
+    $html = <<<EOD
     <div
       class="DePayButton"
       label="$buttonLabel"
@@ -92,6 +148,11 @@ class DePay_Donations_Block {
     ></div>
     <script>DePayButtons.init({document: document});</script>
     EOD;
-    return $str;
+
+    return sprintf(
+      '<div %1$s>%2$s</div>',
+      $wrapper_attributes,
+      $html
+    );
   }
 }
