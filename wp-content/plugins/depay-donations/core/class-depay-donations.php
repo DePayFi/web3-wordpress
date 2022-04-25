@@ -108,7 +108,6 @@ if ( ! class_exists( 'DePay_Donations' ) ) :
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-helpers.php';
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-settings.php';
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-admin.php';
-			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-widget.php';
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-block.php';
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-link.php';
 			require_once DEPAYDONATIONS_PLUGIN_DIR . 'core/includes/classes/class-depay-donations-run.php';

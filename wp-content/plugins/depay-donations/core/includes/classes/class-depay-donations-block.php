@@ -128,6 +128,7 @@ class DePay_Donations_Block {
     $buttonLabel = get_option( 'DePay_donations_button_label' );
     $receiver = get_option('DePay_donations_receiving_wallet_address');
     $accept = [];
+    if(empty(get_option('DePay_donations_accepted_payments'))) { return; }
     foreach (get_option('DePay_donations_accepted_payments') as $accepted) {
       $accepted = (object) $accepted;
       array_push($accept, (object)[
