@@ -8,14 +8,16 @@ window.addAcceptedPayment = (token)=>{
       <table class="wp-list-table widefat fixed striped table-view-list page" style ="margin-bottom: 0.4rem;">
         <tr style="display: none;"><td><td></tr>
         <tr>
-          <td style="text-align: center; width: 4rem;"><img src="${token.logo}" style="width: 3rem; height: 3rem;"/></td>
-          <td colspan="5">
-            <div><strong>${token.symbol}</strong> (${token.name})</div>
-            <div>on ${token.blockchain.toUpperCase()}</div>
-            <div class="row-actions visible">
-              <span class="delete">
-                <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_${token.blockchain}_${token.address}')">Remove</a>
-              </span>
+          <td style="padding: 1rem 1rem 0.4rem 1rem;">
+            <img src="${token.logo}" style="width: 3rem; height: 3rem;"/>
+            <div style="padding-left: 1rem;">
+              <div><strong>${token.symbol}</strong> (${token.name})</div>
+              <div>on ${token.blockchain.toUpperCase()}</div>
+              <div class="row-actions visible">
+                <span class="delete">
+                  <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_${token.blockchain}_${token.address}')">Remove</a>
+                </span>
+              </div>
             </div>
           </td>
         </tr>

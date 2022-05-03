@@ -311,14 +311,16 @@ class DePay_Donations_Admin{
           <table class="wp-list-table widefat fixed striped table-view-list page" style ="margin-bottom: 0.4rem;">
             <tr style="display: none;"><td><td></tr>
             <tr>
-              <td style="text-align: center; width: 4rem;"><img src="<?php echo $token->logo ?>" style="width: 3rem; height: 3rem;"/></td>
-              <td colspan="5">
-                <div><strong><?php echo $token->symbol ?></strong> (<?php echo $token->name ?>)</div>
-                <div>on <?php echo strtoupper($token->blockchain) ?></div>
-                <div class="row-actions visible">
-                  <span class="delete">
-                    <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_<?php echo $token->blockchain ?>_<?php echo $token->address ?>')">Remove</a>
-                  </span>
+              <td style="padding: 1rem 1rem 0.4rem 1rem;">
+                <img src="<?php echo $token->logo ?>" style="width: 3rem; height: 3rem;"/>
+                <div style="padding-left: 1rem;">
+                  <div><strong><?php echo $token->symbol ?></strong> (<?php echo $token->name ?>)</div>
+                  <div>on <?php echo strtoupper($token->blockchain) ?></div>
+                  <div class="row-actions visible">
+                    <span class="delete">
+                      <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_<?php echo $token->blockchain ?>_<?php echo $token->address ?>')">Remove</a>
+                    </span>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -390,7 +392,7 @@ class DePay_Donations_Admin{
       <div style="margin-bottom: 0.8rem;">
         <p class="description" style="margin-bottom: 0.8rem">Search for the <strong>"DePay Donations"</strong> block in the editor and drop the button into layouts, pages and posts.</p>
       </div>
-      <img src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/button.gif' ?>"/>
+      <img style="max-width: 100%" src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/button.gif' ?>"/>
     <?php
   }
 
@@ -423,7 +425,7 @@ class DePay_Donations_Admin{
       <div style="margin-bottom: 0.8rem;">
         <p class="description" style="margin-bottom: 0.8rem">Link any text to <strong>#depay-donation-widget</strong> and it will open your donation widget upon click.</p>
       </div>
-      <img src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/widget.gif' ?>"/>
+      <img style="max-width: 100%" src="<?php echo DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/img/widget.gif' ?>"/>
     <?php
   }
 
