@@ -20,9 +20,14 @@ https://web3wordpress.xyz/
 
 ### Quick Start
 
+1. Install MYSQL
+2. Create "wordpress" database
+
 ```
 php -S localhost:8000
 ```
+
+3. Visit localhost:8000 to install wordpress
 
 ### Release
 
