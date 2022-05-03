@@ -38,16 +38,6 @@ class DePay_Donations_Block {
 
   }
 
-  public static function frontend_style() {
-    wp_enqueue_style(
-      'depay-donations-style',
-      DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/css/frontend.css',
-      [],
-      '0.1.0'
-    );
-  }
-  
-
   public static function render_block(array $attributes) {
     $wrapper_attributes = get_block_wrapper_attributes();
     $additional_classes = array();
@@ -93,7 +83,8 @@ class DePay_Donations_Block {
       $wrapper_attributes
     );
 
-    add_action( 'wp_enqueue_scripts', array( 'DePay_Donations_Block', 'frontend_style' ) );
+    wp_register_style('depay-donations-frontend-style', DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/css/frontend.css', '1.0.0');
+    wp_enqueue_style('depay-donations-frontend-style');
 
     wp_register_script(
       'depay-donations-widgets',
@@ -118,6 +109,15 @@ class DePay_Donations_Block {
       DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/buttons.js'
     );
     wp_enqueue_script( 'depay-donations-buttons' );
+
+    wp_register_script(
+      'depay-donations-init-buttons',
+      DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/init-buttons.js',
+      [],
+      DEPAYDONATIONS_PLUGIN_URL . 'core/includes/assets/js/init-buttons.js',
+      true
+    );
+    wp_enqueue_script( 'depay-donations-init-buttons' );
 
     $widgetColorPrimary = get_option( 'DePay_donations_widget_color_primary' );
     $widgetColorButtons = get_option( 'DePay_donations_widget_color_buttons' );
@@ -162,7 +162,7 @@ class DePay_Donations_Block {
       configuration='$configuration'
       css="$buttonCSS"
     ></div>
-    <script>DePayButtons.init({document: document});</script>
+    <script>if(typeof DePayButtons != 'undefined') { DePayButtons.init({document: document}); }</script>
     EOD;
 
     return sprintf(
