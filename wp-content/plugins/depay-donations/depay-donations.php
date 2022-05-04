@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:   DePay Donations
  * Plugin URI:    https://depay.fi/products/donations/wordpress
- * Description:   Accept Web3 Donations with DePay. The only WordPress donation plugin allowing you to receive cryptocurrency donations directly into your wallet. Supports all major blockchains, cryptocurrencies, tokens and wallets.
+ * Description:   Accept Web3 Donations with DePay. A WordPress donation plugin allowing you to receive cryptocurrency donations directly into your wallet. Supports all major blockchains, cryptocurrencies, tokens and wallets.
  * Version:       1.0.0
  * Author:        DePay
  * Author URI:    https://depay.fi
