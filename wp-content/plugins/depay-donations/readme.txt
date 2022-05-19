@@ -54,6 +54,9 @@ via WalletConnect:
 
 == Changelog ==
 
+= 1.0.5 =
+* security relevant improvements to prevent XSS and other html injections
+
 = 1.0.4 =
 * Complete readme.txt
 

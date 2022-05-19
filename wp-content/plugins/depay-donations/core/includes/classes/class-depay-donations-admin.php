@@ -289,7 +289,7 @@ class DePay_Donations_Admin{
   public static function render_wallet() {
     $value = get_option( 'DePay_donations_receiving_wallet_address' );
     ?>
-      <input type='text' class='regular-text ltr' id='DePay_donations_receiving_wallet_address' name='DePay_donations_receiving_wallet_address' value='<?php echo $value; ?>'/>
+      <input type='text' class='regular-text ltr' id='DePay_donations_receiving_wallet_address' name='DePay_donations_receiving_wallet_address' value='<?php echo esc_html($value); ?>'/>
       <div style="padding-top: 0.5rem;">
         <button type="button" class="button button-secondary" aria-label="Click to connect your wallet" onclick="DePayWidgets.Connect().then(({ account })=>{ document.getElementById('DePay_donations_receiving_wallet_address').value = account })">
           Connect Wallet
@@ -307,30 +307,30 @@ class DePay_Donations_Admin{
     foreach ($accepted as $index => $token) {
       $token = (object) $token
       ?>
-        <div class="DePay_donations_accepted_payment DePay_donations_accepted_payment_<?php echo $token->blockchain ?>_<?php echo $token->address ?>">
+        <div class="DePay_donations_accepted_payment DePay_donations_accepted_payment_<?php echo esc_html($token->blockchain) ?>_<?php echo esc_html($token->address) ?>">
           <table class="wp-list-table widefat fixed striped table-view-list page" style ="margin-bottom: 0.4rem;">
             <tr style="display: none;"><td><td></tr>
             <tr>
               <td style="padding: 1rem 1rem 0.4rem 1rem;">
-                <img src="<?php echo $token->logo ?>" style="width: 3rem; height: 3rem;"/>
+                <img src="<?php echo esc_html($token->logo) ?>" style="width: 3rem; height: 3rem;"/>
                 <div style="padding-left: 1rem;">
-                  <div><strong><?php echo $token->symbol ?></strong> (<?php echo $token->name ?>)</div>
-                  <div>on <?php echo strtoupper($token->blockchain) ?></div>
+                  <div><strong><?php echo esc_html($token->symbol) ?></strong> (<?php echo esc_html($token->name) ?>)</div>
+                  <div>on <?php echo esc_html(strtoupper($token->blockchain)) ?></div>
                   <div class="row-actions visible">
                     <span class="delete">
-                      <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_<?php echo $token->blockchain ?>_<?php echo $token->address ?>')">Remove</a>
+                      <a href="#" onclick="removeAcceptedPayment('DePay_donations_accepted_payment_<?php echo esc_html($token->blockchain) ?>_<?php echo esc_html($token->address) ?>')">Remove</a>
                     </span>
                   </div>
                 </div>
               </td>
             </tr>
           </table>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][address]' value='<?php echo $token->address; ?>'/>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][blockchain]' value='<?php echo $token->blockchain; ?>'/>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][decimals]' value='<?php echo $token->decimals; ?>'/>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][logo]' value='<?php echo $token->logo; ?>'/>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][name]' value='<?php echo $token->name; ?>'/>
-          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo $index; ?>][symbol]' value='<?php echo $token->symbol; ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][address]' value='<?php echo esc_html($token->address); ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][blockchain]' value='<?php echo esc_html($token->blockchain); ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][decimals]' value='<?php echo esc_html($token->decimals); ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][logo]' value='<?php echo esc_html($token->logo); ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][name]' value='<?php echo esc_html($token->name); ?>'/>
+          <input type='hidden' name='DePay_donations_accepted_payments[<?php echo esc_html($index); ?>][symbol]' value='<?php echo esc_html($token->symbol); ?>'/>
         </div>
       <?php
     }
@@ -357,13 +357,13 @@ class DePay_Donations_Admin{
       <div>
         <div><p class="description" ><strong>CSS</strong></p></div>
         <div><p class="description">You can add CSS attributes like <strong>background-color</strong>, <strong>border-radius</strong> etc.</p></div>
-        <div id="buttonEditor" class="editor" style="margin-top:0.8rem"><?php echo $buttonCSS ?></div>
-        <input type='hidden' id='DePay_donations_button_css' name='DePay_donations_button_css' value='<?php echo $buttonCSS; ?>'/>
+        <div id="buttonEditor" class="editor" style="margin-top:0.8rem"><?php echo esc_html($buttonCSS) ?></div>
+        <input type='hidden' id='DePay_donations_button_css' name='DePay_donations_button_css' value='<?php echo esc_html($buttonCSS); ?>'/>
       </div>
       <div style="margin-top: 0.8rem">
         <label>
           <div><p class="description" ><strong>Label</strong></p></div>
-          <input type='text' id='DePay_donations_button_label' name='DePay_donations_button_label' value='<?php echo $buttonLabel; ?>'/>
+          <input type='text' id='DePay_donations_button_label' name='DePay_donations_button_label' value='<?php echo esc_html($buttonLabel); ?>'/>
         </label>
       </div>
       <p class="description" style="margin-bottom: 0.8rem; padding-top: 0.8rem;"><strong>Demo</strong></p>
@@ -405,16 +405,16 @@ class DePay_Donations_Admin{
     ?>
       <div style="margin-bottom: 1.6rem">
         <p class="description" style="margin-bottom: 0.8rem"><strong>Style</strong></p>
-        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_primary' id="depayDonationWidgetStyleColorPrimary" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo $widgetColorPrimary ?>"/>Primary</label></div>
-        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_buttons' id="depayDonationWidgetStyleColorButtonText" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo $widgetColorButtons ?>"/>Button Text</label></div>
-        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_icons' id="depayDonationWidgetStyleColorIcons" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo $widgetColorIcons ?>"/>Icon Color</label></div>
-        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_text' id="depayDonationWidgetStyleColorText" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo $widgetColorText ?>"/>Text</label></div>
+        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_primary' id="depayDonationWidgetStyleColorPrimary" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo esc_html($widgetColorPrimary) ?>"/>Primary</label></div>
+        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_buttons' id="depayDonationWidgetStyleColorButtonText" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo esc_html($widgetColorButtons) ?>"/>Button Text</label></div>
+        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_icons' id="depayDonationWidgetStyleColorIcons" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo esc_html($widgetColorIcons) ?>"/>Icon Color</label></div>
+        <div style="margin-bottom: 0.8rem"><label style="display: flex; align-items: center;"><input name='DePay_donations_widget_color_text' id="depayDonationWidgetStyleColorText" onchange="initDonationWidget()" style="margin-right: 0.6rem" type="color" value="<?php echo esc_html($widgetColorText) ?>"/>Text</label></div>
       </div>
       <div>
         <p class="description"><strong>CSS</strong></p>
         <div><p class="description">You can style classes like <strong>.Dialog</strong>, <strong>.ButtonPrimary</strong>: <a href="https://github.com/DePayFi/widgets/tree/master/src/styles" target="_blank">See all available classes</a></p></div>
-        <div id="widgetEditor" class="editor" style="margin-top: 0.8rem"><?php echo $widgetCSS ?></div>
-        <input type='hidden' id='DePay_donations_widget_css' name='DePay_donations_widget_css' value='<?php echo $widgetCSS; ?>'/>
+        <div id="widgetEditor" class="editor" style="margin-top: 0.8rem"><?php echo esc_html($widgetCSS) ?></div>
+        <input type='hidden' id='DePay_donations_widget_css' name='DePay_donations_widget_css' value='<?php echo esc_html($widgetCSS); ?>'/>
       </div>
       <p class="description" style="margin-bottom: 0.8rem; padding-top: 0.8rem;"><strong>Demo</strong></p>
       <div id="depayDonationWidgetDemo"></div>

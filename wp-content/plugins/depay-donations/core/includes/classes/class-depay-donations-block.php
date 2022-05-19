@@ -130,18 +130,13 @@ class DePay_Donations_Block {
     $accept = [];
 
     if(empty(get_option('DePay_donations_accepted_payments'))) { 
-      $html = <<<EOD
-        <a
-          href="/wp-admin/admin.php?page=depay-donations"
-          target="_blank"
-        >!!! Please finish your donation configuration !!!</a>
-        EOD;
+      $html = '<a href="/wp-admin/admin.php?page=depay-donations" target="_blank">!!! Please finish your donation configuration !!!</a>';
 
-        return sprintf(
-          '<div %1$s>%2$s</div>',
-          $wrapper_attributes,
-          $html
-        );
+      return sprintf(
+        '<div %1$s>%2$s</div>',
+        $wrapper_attributes,
+        $html
+      );
     }
 
     foreach (get_option('DePay_donations_accepted_payments') as $accepted) {
@@ -153,17 +148,7 @@ class DePay_Donations_Block {
       ]);
     }
     $accept = json_encode($accept);
-    $configuration = "{ \"style\": { \"colors\": { \"primary\": \"".$widgetColorPrimary."\", \"buttonText\": \"".$widgetColorButtons."\", \"icons\": \"".$widgetColorIcons."\", \"text\": \"".$widgetColorIcons."\" }, \"css\": \"".$widgetCSS."\" }, \"accept\": $accept, \"fee\": { \"amount\": \"1%\", \"receiver\": \"0x7b94266CA5cC36005b3043e1ffE5EBd624494731\" } }";
-    $html = <<<EOD
-    <div
-      class="DePayButton"
-      label="$buttonLabel"
-      widget="Donation"
-      configuration='$configuration'
-      css="$buttonCSS"
-    ></div>
-    <script>if(typeof DePayButtons != 'undefined') { DePayButtons.init({document: document}); }</script>
-    EOD;
+    $html = '<div class="DePayButton" label="'.esc_html($buttonLabel).'" widget="Donation" configuration=\'{ "style": { "colors": { "primary": "'.esc_html($widgetColorPrimary).'", "buttonText": "'.esc_html($widgetColorButtons).'", "icons": "'.esc_html($widgetColorIcons).'", "text": "'.esc_html($widgetColorText).'" }, "css": "'.esc_html($widgetCSS).'" }, "accept": '.str_replace('&quot;', '"', esc_html($accept)).', "fee": { "amount": "1%", "receiver": "0x7b94266CA5cC36005b3043e1ffE5EBd624494731" } }\' css="'.esc_html($buttonCSS).'"></div><script>if(typeof DePayButtons != "undefined") { DePayButtons.init({document: document}); }</script>';
 
     return sprintf(
       '<div %1$s>%2$s</div>',
