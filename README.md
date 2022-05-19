@@ -37,6 +37,6 @@ php -S localhost:8000
 In order to release the plugins simply push a git tag:
 
 ```
-git tag vX.X.X
-git push origin vX.X.X
+git tag v1.0.5
+git push origin v1.0.5
 ```
