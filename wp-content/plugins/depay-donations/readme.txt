@@ -11,7 +11,7 @@ Accept Web3 Donations with DePay directly into your crypto wallet.
 
 == Description ==
 
-Accept Web3 Donations with DePay directly into your crypto wallet.
+Better Text!. Accept Web3 Donations with DePay directly into your crypto wallet.
 
 A WordPress donation plugin allowing you to receive cryptocurrency donations directly into your wallet.
 
