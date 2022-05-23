@@ -18,6 +18,7 @@ https://web3wordpress.xyz/
 1. Pull submodules
 
 ```
+git submodule update --recursive --init
 git submodule update --recursive --remote
 ```
 
