@@ -1,0 +1,3 @@
+[submodule "wp-content/plugins/depay-donations"]
+	path = wp-content/plugins/depay-donations
+	url = git@github.com:DePayFi/web3-wordpress-depay-donations.git

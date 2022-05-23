@@ -1,42 +1,38 @@
-## Donations
+## Web3 Wordpress Plugins by DePay
 
-The Wordpress Web3 Donation plugin allows you to accept cryptocurrency donations directly into your wallet.
+This repositroy contains all wordpress plugins developed by @DePayFi.
 
-![Wordpress Web3 Donations](/wp-content/plugins/depay-donations/assets/screenshot-1.gif)
+### Plugins
+
+- [depay-donations](https://github.com/DePayFi/web3-wordpress-depay-donations)
 
 ### Demo
 
-Visit our demo wordpress installation and scroll to the buttom to find the "Support Us" donation button:
-
 https://web3wordpress.xyz/
 
-### Installation
-
-1. [Download the latest plugin](https://github.com/DePayFi/web3-wordpress/releases/latest/download/wp-depay-donations-plugin.zip) 
-
-2. Install the the plugin from within your wordpress admin section: "Plugins" -> "Upload Plugin" -> Choose the plugin zip you've downloaded in step 1
 
 ## Development
 
 ### Quick Start
 
-1. Install PHP & MYSQL
+1. Pull submodules
 
-2. Create "wordpress" database
+```
+git submodule update --recursive --remote
+```
 
-3. Start server
+2. Install PHP & MYSQL
+
+3. Create "wordpress" database
+
+4. Start server
 
 ```
 php -S localhost:8000
 ```
 
-4. Visit localhost:8000 to install wordpress
+5. Visit localhost:8000 to install wordpress
 
 ### Release
 
-In order to release the plugins simply push a git tag:
-
-```
-git tag v1.0.5
-git push origin v1.0.5
-```
+Release individual plugins through their plugin submodules.
