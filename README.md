@@ -4,7 +4,7 @@ This repositroy contains all wordpress plugins developed by @DePayFi.
 
 ### Plugins
 
-- [depay-donations](https://github.com/DePayFi/web3-wordpress-depay-donations)
+- [depay-wordpress](https://github.com/DePayFi/web3-wordpress-depay)
 
 ### Demo
 
@@ -39,8 +39,8 @@ php -S localhost:8000
 Make sure the server is stopped before creating the symlink.
 
 ```
-rm -rf ./wp-content/plugins/depay-donations
-ln -s /Users/Sebastian/Work/DePay/web3-wordpress-depay-donations ./wp-content/plugins/depay-donations
+rm -rf ./wp-content/plugins/depay-wordpress
+ln -s /Users/Sebastian/Work/DePay/web3-wordpress-depay ./wp-content/plugins/depay-wordpress
 ```
 
 Make sure you reset your local git repository once you're done testing with the symlink:
